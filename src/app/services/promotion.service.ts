@@ -9,15 +9,15 @@ export class PromotionService {
   constructor() { }
 
   
-  getDishes(): Promotion[]{
-    return PROMOTIONS; 
+  getDishes(): Promise<Promotion[]>{
+    return Promise.resolve(PROMOTIONS); 
   }
 
-  getDish(id: string): Promotion {
-    return PROMOTIONS.filter((promo) => (promo.id === id))[0];
+  getDish(id: string): Promise<Promotion> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => (promo.id === id))[0]);
   }
 
-  getFeaturedDish(): Promotion {
-    return PROMOTIONS.filter((promo) => promo.featured)[0];
+  getFeaturedDish(): Promise<Promotion> {
+    return Promise.resolve(PROMOTIONS.filter((promo) => promo.featured)[0]);
   }
 }
