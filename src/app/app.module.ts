@@ -13,9 +13,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSelectModule} from '@angular/material/select'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; 
+import { HttpClientModule} from '@angular/common/http'
+//import { HttpModule } from '@angular/http';
 
 
 
@@ -35,6 +38,8 @@ import { LeaderService } from './services/leader.service';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -66,13 +71,16 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     ReactiveFormsModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule,
+    HttpClientModule
     
   ],
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide: 'BaseURL', useValue: 'baseURL'}
   ],
   entryComponents: [
     LoginComponent

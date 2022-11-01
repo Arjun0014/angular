@@ -8,7 +8,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 })
 export class ContactComponent implements OnInit {
 
-  @ViewChild('fform') feedbackFormDirective: NgForm;
+    @ViewChild('fform') feedbackFormDirective: NgForm;
 
   feedbackForm: FormGroup;
   feedback: Feedback;

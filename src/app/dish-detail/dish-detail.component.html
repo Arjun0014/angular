@@ -13,7 +13,7 @@
                 <h3>{{dish.name | uppercase}}</h3>
             </mat-card-title>
         </mat-card-header>
-        <img width="450" height="400" src="{{dish.image}}" alt="{{dish.name}}">
+        <img width="450" height="400" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
         <mat-card-content>
             <p>{{dish.description}}</p>
         </mat-card-content>
@@ -46,6 +46,44 @@
   </div>
   <div fxFlex [hidden]="dish">
     <mat-spinner>Loading . . . Please hold your taste buds!!!</mat-spinner>
-</div>
+  </div>
+
+  <!-- <mat-list *ngIf="commentForm.valid">
+    <mat-list-item>
+      <h4 matLine>{{commentForm.get('comment').value}}</h4>
+
+    </mat-list-item>
+  </mat-list> -->
+
+    <!-- <p>{{commentForm.value.author}} {{commentForm.status | json}}</p> -->
+    <div *ngIf="commentForm.valid">
+    <p matLine>{{commentForm.value.comment}} </p>
+              <p matLine>  {{commentForm.value.rating}} Stars </p>
+               <p matLine> --{{commentForm.value.author}}</p>
+     </div>
+
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field>
+          <input matInput formControlName="author" placeholder="Author" type="text" required>
+          <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput formControlName="comment" placeholder="Comment" type="text" required>
+          <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+        </mat-form-field>
+
+        <mat-slider 
+          formControlName="rating" 
+          thumbLabel tickInterval="1"  
+          aria-placeholder="Rating" 
+          min="1" max="5" step="1" value="3"></mat-slider>   
+      </p>
+
+      <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+
+    </form>
+  
 
 </div>
