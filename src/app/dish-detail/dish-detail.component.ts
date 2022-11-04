@@ -41,6 +41,7 @@ export class DishDetailComponent implements OnInit {
  dishIds: string[];
  next: string;
  prev: string;
+ errMess: string;
 
   constructor(
     private dishService: DishService,
@@ -55,8 +56,10 @@ export class DishDetailComponent implements OnInit {
     this.createForm();
     this.dishService.getDishIds()
       .subscribe((dishIds) => this.dishIds = dishIds);
-    this.route.params.pipe(switchMap( (params: Params) => this.dishService.getDish(params['id'])))
-      .subscribe( (dish) => { this.dish = dish; this.setPrevNext(dish.id);  })
+    this.route.params
+      .pipe(switchMap( (params: Params) => this.dishService.getDish(params['id'])))
+      .subscribe({next: (dish) => { this.dish = dish; this.setPrevNext(dish.id);  },
+        error: errmess => this.errMess = <any>errmess})
   }
 
   setPrevNext(dishId: string){
